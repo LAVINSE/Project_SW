@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class swUtilExtension
+public static class swUtilsExtension
 {
     #region 함수
     /** 작음 여부를 검사한다 */
-    public static bool ExIsLess(this float a,  float b)
+    public static bool ExIsLess(this float a, float b)
     {
         return a < b - float.Epsilon;
     }
@@ -35,5 +35,19 @@ public static class swUtilExtension
         return a.ExIsGreat(b) || a.ExIsEquals(b);
     }
 
+    /** 월드 => 로컬로 변환한다 */
+    public static Vector3 ExToLocal(this Vector3 posA, GameObject parentObj, bool isCoord = true)
+    {
+        var vector4 = new Vector4(posA.x, posA.y, posA.z, isCoord ? 1.0f : 0.0f);
+        return parentObj.transform.worldToLocalMatrix * vector4;
+    }
+
+    /** 로컬 => 월드로 변환한다 */
+    public static Vector3 ExToWorld(this Vector3 posA,
+        GameObject parentObj, bool isCoord = true)
+    {
+        var stVec4 = new Vector4(posA.x, posA.y, posA.z, isCoord ? 1.0f : 0.0f);
+        return parentObj.transform.localToWorldMatrix * stVec4;
+    }
     #endregion // 함수
 }
