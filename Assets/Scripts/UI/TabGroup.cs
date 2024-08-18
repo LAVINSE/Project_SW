@@ -31,5 +31,13 @@ public class TabGroup : MonoBehaviour
     {
 
     }
+
+    public void ResetTabs()
+    {
+        foreach(TabButton tabButton in  tabButtonList)
+        {
+
+        }
+    }
     #endregion // ÇÔ¼ö
 }
