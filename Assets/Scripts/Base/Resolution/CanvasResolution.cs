@@ -13,28 +13,29 @@ public class RatioSetting
 
 public class CanvasResolution : MonoBehaviour
 {
-    #region º¯¼ö
+    #region ë³€ìˆ˜
     [SerializeField] private CanvasScaler canvasScaler;
 
     [Space]
-    [Header("=====> È­¸é ºñÀ²¿¡ ´ëÇÑ ¼³Á¤ <=====")]
+    [Header("=====> í™”ë©´ ë¹„ìœ¨ì— ëŒ€í•œ ì„¤ì • <=====")]
     [SerializeField] private RatioSetting[] ratioSettings;
     [SerializeField] private float defaultMatchWidthOrHeight = 0;
-    #endregion // º¯¼ö
+    #endregion // ë³€ìˆ˜
 
-    #region ÇÔ¼ö
-    /** ÃÊ±âÈ­ */
+    #region í•¨ìˆ˜
+    /** ì´ˆê¸°í™” */
     private void Awake()
     {
         CanvasScalerResolution();
+        swUtilsLog.Log("123");
     }
 
-    /** ºñÀ²¿¡ µû¶ó ÀúÀåµÈ UIÀ§Ä¡ Á¶Á¤ */
+    /** ë¹„ìœ¨ì— ë”°ë¼ ì €ì¥ëœ UIìœ„ì¹˜ ì¡°ì • */
     private void CanvasScalerResolution()
     {
         float currentRatio = (float)Screen.height / Screen.width;
 
-        // maxRatio ¿À¸§Â÷¼ø Á¤·Ä
+        // maxRatio ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬
         System.Array.Sort(ratioSettings, (a, b) => a.maxRatio.CompareTo(b.maxRatio));
 
         foreach (var setting in ratioSettings)
@@ -46,8 +47,8 @@ public class CanvasResolution : MonoBehaviour
             }
         }
 
-        // ¸ğµç ¼³Á¤µÈ ºñÀ²À» ÃÊ°úÇÑ °æ¿ì ±âº»°ª Àû¿ë
+        // ëª¨ë“  ì„¤ì •ëœ ë¹„ìœ¨ì„ ì´ˆê³¼í•œ ê²½ìš° ê¸°ë³¸ê°’ ì ìš©
         canvasScaler.matchWidthOrHeight = defaultMatchWidthOrHeight;
     }
-    #endregion // ÇÔ¼ö
+    #endregion // í•¨ìˆ˜
 }

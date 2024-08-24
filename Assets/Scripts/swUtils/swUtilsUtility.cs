@@ -1,24 +1,27 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public static class swUtilsUtility
 {
-    #region ÇÔ¼ö
-    /** Á¤¼öÇü ·£´ı¼ıÀÚ¸¦ ¹İÈ¯ÇÑ´Ù */
+    #region í•¨ìˆ˜
+    /** ì •ìˆ˜í˜• ëœë¤ìˆ«ìë¥¼ ë°˜í™˜í•œë‹¤ */
     public static int RandomInt(this int valueA, int valueB)
     {
         return UnityEngine.Random.Range(valueA, valueB);
     }
 
-    /** ½Ç¼öÇü ·£´ı¼ıÀÚ¸¦ ¹İÈ¯ÇÑ´Ù */
+    /** ì‹¤ìˆ˜í˜• ëœë¤ìˆ«ìë¥¼ ë°˜í™˜í•œë‹¤ */
     public static float RandomFloat(this float valueA, float valueB)
     {
         return UnityEngine.Random.Range(valueA, valueB);
     }
 
-    /** Å¸ÀÓ ¿µÇâ ¾È¹Ş´Â Æ®À© Äİ¹éÇÑ´Ù */
+    /** íƒ€ì„ ì˜í–¥ ì•ˆë°›ëŠ” íŠ¸ìœˆ ì½œë°±í•œë‹¤ */
     public static Sequence TweenUnscaledDelay(float delay, TweenCallback callback)
     {
         if (callback == null)
@@ -31,7 +34,7 @@ public static class swUtilsUtility
         return seqence;
     }
 
-    /** Å¸ÀÓ ¿µÇâÀ» ¹Ş´Â Æ®À© Äİ¹éÇÑ´Ù */
+    /** íƒ€ì„ ì˜í–¥ì„ ë°›ëŠ” íŠ¸ìœˆ ì½œë°±í•œë‹¤ */
     public static Sequence TweenScaledDelay(float delay, TweenCallback callback)
     {
         if (callback == null)
@@ -42,5 +45,25 @@ public static class swUtilsUtility
         seqence.AppendCallback(callback);
         return seqence;
     }
-    #endregion // ÇÔ¼ö
+
+    /** ê²Œì´ì§€ë¥¼ ì„¤ì •í•œë‹¤ */
+    public static void SetGauge(TextMeshProUGUI textMesh, Image gaugeImg, int currentValue, int maxValue)
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.Append(currentValue);
+        stringBuilder.Append(" / ");
+        stringBuilder.Append(maxValue);
+
+        textMesh.text = stringBuilder.ToString();
+    }
+
+    /** ë¶€ëª¨ ê°ì²´ë¥¼ ì§€ì •í•´ì¤€ë‹¤ */
+    public static void SetParent(this GameObject obj, Transform targetObj, bool isResetPos = true, bool isStayWorldPos = false)
+    {
+        obj.transform.SetParent(targetObj, isStayWorldPos);
+
+        if (isResetPos)
+            obj.transform.localPosition = Vector3.zero;
+    }
+    #endregion // í•¨ìˆ˜
 }
