@@ -16,12 +16,12 @@ public class CustomEditorProjectSetting : Editor
         var projectSettingSO = (ProjectSettingSO)target;
         var addSymbols = projectSettingSO.SymBols;
 
-        if (GUILayout.Button("Update", GUILayout.Height(50)))
+        if (GUILayout.Button("SymBols Update", GUILayout.Height(50)))
         {
             UpdateScriptingDefineSymbols(addSymbols);
         }   
 
-        if(GUILayout.Button("Reset", GUILayout.Height(50)))
+        if(GUILayout.Button("SymBols Reset", GUILayout.Height(50)))
         {
             ResetScriptingDefineSymbols(addSymbols);
         }

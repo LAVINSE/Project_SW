@@ -4,28 +4,17 @@ using UnityEngine;
 
 public class SafeAreaHandler : MonoBehaviour
 {
-    #region º¯¼ö
+    #region ë³€ìˆ˜
     [SerializeField] private RectTransform rectTransform;
-    #endregion // º¯¼ö
+    #endregion // ë³€ìˆ˜
 
-    #region ÇÔ¼ö
+    #region í•¨ìˆ˜
     private void Awake()
     {
         ApplySafeArea();
     }
 
-    /** ±âº» ±¸¿ª¿¡ UI¸¦ ¹èÄ¡ÇÑ´Ù */
-    [ContextMenu("BaseArea")]
-    private void BaseArea()
-    {
-        rectTransform.anchorMin = new Vector2(0, 0);
-        rectTransform.anchorMax = new Vector2(1, 1);
-
-        UnityEditor.EditorUtility.SetDirty(this);
-        UnityEditor.PrefabUtility.RecordPrefabInstancePropertyModifications(this);
-    }
-
-    /** ¾ÈÀü±¸¿ª¿¡ ¸ÂÃç UI¸¦ ÀÚµ¿ ¹èÄ¡ÇØÁØ´Ù */
+    /** ì•ˆì „êµ¬ì—­ì— ë§ì¶° UIë¥¼ ìë™ ë°°ì¹˜í•´ì¤€ë‹¤ */
     private void ApplySafeArea()
     {
         var safeArea = Screen.safeArea;
@@ -43,5 +32,19 @@ public class SafeAreaHandler : MonoBehaviour
         UnityEditor.EditorUtility.SetDirty(this);
         UnityEditor.PrefabUtility.RecordPrefabInstancePropertyModifications(this);
     }
-    #endregion // ÇÔ¼ö
+    #endregion // í•¨ìˆ˜
+
+    #region ìœ í‹¸ ë° í¸ì˜ì„±
+    /** ê¸°ë³¸ êµ¬ì—­ì— UIë¥¼ ë°°ì¹˜í•œë‹¤ */
+    [ContextMenu("BaseArea")]
+    private void BaseArea()
+    {
+        UnityEditor.Undo.RecordObject(this, "BaseArea");
+        rectTransform.anchorMin = new Vector2(0, 0);
+        rectTransform.anchorMax = new Vector2(1, 1);
+
+        UnityEditor.EditorUtility.SetDirty(this);
+        UnityEditor.PrefabUtility.RecordPrefabInstancePropertyModifications(this);
+    }
+    #endregion // ìœ í‹¸ ë° í¸ì˜ì„±
 }

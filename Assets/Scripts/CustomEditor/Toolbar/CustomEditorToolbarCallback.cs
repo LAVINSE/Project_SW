@@ -7,50 +7,50 @@ using UnityEngine.UIElements;
 
 public static class CustomEditorToolbarCallback
 {
-    // ¿¡µğÅÍÀÇ Åø¹Ù Å¸ÀÔÀ» °¡Á®¿Â´Ù
-    private static System.Type m_toolbarType = typeof(Editor).Assembly.GetType("UnityEditor.Toolbar");
-    // ÇöÀç Åø¹Ù ÀúÀå
+    // ì—ë””í„°ì˜ íˆ´ë°” íƒ€ì…ì„ ê°€ì ¸ì˜¨ë‹¤
+    private static System.Type m_toolbarType = typeof(Editor).Assembly.GetType ("UnityEditor.Toolbar");
+    // í˜„ì¬ íˆ´ë°” ì €ì¥
     private static ScriptableObject m_currentToolbar;
 
-    // ¿ŞÂÊ, ¿À¸¥ÂÊ Åø¹Ù µ¨¸®°ÔÀÌÆ® »ı¼º
+    // ì™¼ìª½, ì˜¤ë¥¸ìª½ íˆ´ë°” ë¸ë¦¬ê²Œì´íŠ¸ ìƒì„±
     public static System.Action OnToolbarGUILeft;
     public static System.Action OnToolbarGUIRight;
 
     static CustomEditorToolbarCallback()
     {
-        // OnUpdate µî·Ï
+        // OnUpdate ë“±ë¡
         EditorApplication.update -= OnUpdate;
         EditorApplication.update += OnUpdate;
     }
 
-    /** ¸Å ÇÁ·¹ÀÓ¸¶´Ù È£ÃâÇÑ´Ù */
+    /** ë§¤ í”„ë ˆì„ë§ˆë‹¤ í˜¸ì¶œí•œë‹¤ */
     static void OnUpdate()
     {
-        // ÇöÀç Åø¹Ù°¡ null ÀÏ °æ¿ì »õ·Î¿î Åø¹Ù¸¦ Ã£´Â´Ù
+        // í˜„ì¬ íˆ´ë°”ê°€ null ì¼ ê²½ìš° ìƒˆë¡œìš´ íˆ´ë°”ë¥¼ ì°¾ëŠ”ë‹¤
         if (m_currentToolbar == null)
         {
-            // Åø¹ÙÅ¸ÀÔÀÇ ¸ğµç °´Ã¼¸¦ Ã£´Â´Ù
+            // íˆ´ë°”íƒ€ì…ì˜ ëª¨ë“  ê°ì²´ë¥¼ ì°¾ëŠ”ë‹¤
             var toolbars = Resources.FindObjectsOfTypeAll(m_toolbarType);
             m_currentToolbar = toolbars.Length > 0 ? (ScriptableObject)toolbars[0] : null;
 
             if (m_currentToolbar != null)
             {
-                // Åø¹ÙÀÇ ·çÆ® ¿ä¼Ò¸¦ °¡Á®¿Â´Ù
+                // íˆ´ë°”ì˜ ë£¨íŠ¸ ìš”ì†Œë¥¼ ê°€ì ¸ì˜¨ë‹¤
                 var root = m_currentToolbar.GetType().GetField("m_Root", BindingFlags.NonPublic | BindingFlags.Instance);
                 var rawRoot = root.GetValue(m_currentToolbar);
                 var mRoot = rawRoot as VisualElement;
 
-                // ¿ŞÂÊ°ú ¿À¸¥ÂÊ Åø¹Ù ¿µ¿ª¿¡ Äİ¹éÀ» µî·ÏÇÑ´Ù
+                // ì™¼ìª½ê³¼ ì˜¤ë¥¸ìª½ íˆ´ë°” ì˜ì—­ì— ì½œë°±ì„ ë“±ë¡í•œë‹¤
                 RegisterCallback("ToolbarZoneLeftAlign", OnToolbarGUILeft);
                 RegisterCallback("ToolbarZoneRightAlign", OnToolbarGUIRight);
 
-                // Äİ¹éÀ» µî·ÏÇÑ´Ù
+                // ì½œë°±ì„ ë“±ë¡í•œë‹¤
                 void RegisterCallback(string root, System.Action cb)
                 {
-                    // ÁöÁ¤µÈ ·çÆ® ¿ä¼Ò¸¦ Ã£´Â´Ù 
+                    // ì§€ì •ëœ ë£¨íŠ¸ ìš”ì†Œë¥¼ ì°¾ëŠ”ë‹¤ 
                     var toolbarZone = mRoot.Q(root);
 
-                    // »õ·Î¿î VisualElement¸¦ »ı¼ºÇÏ°í ½ºÅ¸ÀÏÀ» ¼³Á¤ÇÑ´Ù
+                    // ìƒˆë¡œìš´ VisualElementë¥¼ ìƒì„±í•˜ê³  ìŠ¤íƒ€ì¼ì„ ì„¤ì •í•œë‹¤
                     var parent = new VisualElement()
                     {
                         style = {
@@ -59,14 +59,14 @@ public static class CustomEditorToolbarCallback
                         }
                     };
 
-                    // IMGUI ÄÁÅ×ÀÌ³Ê¸¦ »ı¼ºÇÏ°í ¼³Á¤ÇÑ´Ù
+                    // IMGUI ì»¨í…Œì´ë„ˆë¥¼ ìƒì„±í•˜ê³  ì„¤ì •í•œë‹¤
                     var container = new IMGUIContainer();
                     container.style.flexGrow = 1;
                     container.onGUIHandler += () => {
                         cb?.Invoke();
                     };
 
-                    // »ı¼ºÇÑ ¿ä¼ÒµéÀ» Ãß°¡ÇÑ´Ù
+                    // ìƒì„±í•œ ìš”ì†Œë“¤ì„ ì¶”ê°€í•œë‹¤
                     parent.Add(container);
                     toolbarZone.Add(parent);
                 }
