@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ProjectSettingSO", menuName = "ProjectSetting/SettingData")]
-public class ProjectSettingSO : ScriptableObject
+[CreateAssetMenu(fileName = "CustomEditorProjectSettingSO", menuName = "CustomEditor/SymbolSO")]
+public class CustomEditorSymbolSO : ScriptableObject
 {
     #region 변수
     [SerializeField] private string[] symbols;

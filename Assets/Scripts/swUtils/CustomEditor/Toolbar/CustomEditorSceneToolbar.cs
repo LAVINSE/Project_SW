@@ -3,25 +3,29 @@ using System.Collections.Generic;
 using UnityEditor.SceneManagement;
 using UnityEditor;
 using UnityEngine;
+using System;
 
 public static class CustomEditorSceneToolbar
 {
-    /** ¹öÆ° ½ºÅ¸ÀÏÀ» Á¤ÀÇÇÏ´Â Å¬·¡½º */
+    /** ë²„íŠ¼ ìŠ¤íƒ€ì¼ì„ ì •ì˜í•˜ëŠ” í´ë˜ìŠ¤ */
     private static class ToolbarStyles
     {
         public static readonly GUIStyle commandButtonStyle;
         public static readonly GUIStyle commandButtonStyle_1;
         public static readonly GUIStyle fontStyle;
 
+        public const float buttonWidth = 60;
+
         static ToolbarStyles()
         {
-            // ¹öÆ° ½ºÅ¸ÀÏ ÃÊ±âÈ­
+            // ë²„íŠ¼ ìŠ¤íƒ€ì¼ ì´ˆê¸°í™”
             commandButtonStyle = new GUIStyle("Command")
             {
                 fontSize = 12,
                 alignment = TextAnchor.MiddleCenter,
                 imagePosition = ImagePosition.ImageAbove,
                 fontStyle = FontStyle.Bold,
+                fixedWidth = buttonWidth
             };
 
             commandButtonStyle_1 = new GUIStyle("Command")
@@ -30,6 +34,7 @@ public static class CustomEditorSceneToolbar
                 alignment = TextAnchor.MiddleCenter,
                 imagePosition = ImagePosition.ImageAbove,
                 fontStyle = FontStyle.Bold,
+                fixedWidth = buttonWidth
             };
 
             fontStyle = new GUIStyle
@@ -51,16 +56,16 @@ public static class CustomEditorSceneToolbar
     {
         static SceneSwitchLeftButton()
         {
-            // ¿ŞÂÊ Åø¹Ù¿¡ GUI¸¦ Ãß°¡ÇÑ´Ù
+            // ì™¼ìª½ íˆ´ë°”ì— GUIë¥¼ ì¶”ê°€í•œë‹¤
             CustomEditorToolbarExtender.LeftToolbarGUI.Add(OnToolbarGUI);
         }
 
-        /** Åø¹Ù GUI ·»´õ¸µÇÑ´Ù */
+        /** íˆ´ë°” GUI ë Œë”ë§í•œë‹¤ */
         private static void OnToolbarGUI()
         {
             GUILayout.FlexibleSpace();
 
-            // ¾À ÀüÈ¯ ¹öÆ° > Ãß°¡ ÇÏ¸éµÊ
+            // ì”¬ ì „í™˜ ë²„íŠ¼ > ì¶”ê°€ í•˜ë©´ë¨
             if (GUILayout.Button(new GUIContent("Title", "Project_Title"), ToolbarStyles.commandButtonStyle))
             {
                 SceneHelper.StartScene("Project_Title");
@@ -82,14 +87,14 @@ public static class CustomEditorSceneToolbar
 
         static SceneSwitchRightButton()
         {
-            // ¿À¸¥ÂÊ Åø¹Ù¿¡ GUI¸¦ Ãß°¡ÇÑ´Ù
+            // ì˜¤ë¥¸ìª½ íˆ´ë°”ì— GUIë¥¼ ì¶”ê°€í•œë‹¤
             CustomEditorToolbarExtender.RightToolbarGUI.Add(OnToolbarGUI);
         }
 
-        /** Åø¹Ù GUI ·»´õ¸µÇÑ´Ù */
+        /** íˆ´ë°” GUI ë Œë”ë§í•œë‹¤ */
         private static void OnToolbarGUI()
         {
-            // Å¸ÀÓ ½ºÄÉÀÏ Á¶Àı
+            // íƒ€ì„ ìŠ¤ì¼€ì¼ ì¡°ì ˆ
             GUILayout.Label("Time Scale");
             sliderValue = GUILayout.HorizontalSlider(sliderValue, sliderLeftValue, sliderRightValue, GUILayout.Width(100f));
             TimeScaleHelper.ChangeTimScale(sliderValue);
@@ -98,12 +103,12 @@ public static class CustomEditorSceneToolbar
         }
     }
 
-    /** ¾À ÀüÈ¯À» µµ¿ÍÁÖ´Â ÇïÆÛ Å¬·¡½º */
+    /** ì”¬ ì „í™˜ì„ ë„ì™€ì£¼ëŠ” í—¬í¼ í´ë˜ìŠ¤ */
     private static class SceneHelper
     {
         private static string sceneToOpen;
 
-        /** ¾À ÀüÈ¯À» ½ÃÀÛÇÑ´Ù */
+        /** ì”¬ ì „í™˜ì„ ì‹œì‘í•œë‹¤ */
         public static void StartScene(string sceneName)
         {
             if (EditorApplication.isPlaying)
@@ -115,44 +120,54 @@ public static class CustomEditorSceneToolbar
             EditorApplication.update += OnUpdate;
         }
 
-        /** ¿¡µğÅÍ ¾÷µ¥ÀÌÆ® ½Ã È£ÃâµÈ´Ù */
+        /** ì—ë””í„° ì—…ë°ì´íŠ¸ ì‹œ í˜¸ì¶œëœë‹¤ */
         private static void OnUpdate()
         {
-            // ¾À ÀüÈ¯ÀÌ ºÒ°¡´ÉÇÑ »óÈ²ÀÌ¸é Á¾·á
-            if (sceneToOpen == null || EditorApplication.isPlaying || EditorApplication.isPaused ||
+            // ì”¬ ì „í™˜ì´ ë¶ˆê°€ëŠ¥í•œ ìƒí™©ì´ë©´ ì¢…ë£Œ
+            if (string.IsNullOrEmpty(sceneToOpen) || EditorApplication.isPlaying || EditorApplication.isPaused ||
                 EditorApplication.isCompiling || EditorApplication.isPlayingOrWillChangePlaymode)
             {
                 return;
             }
-
             EditorApplication.update -= OnUpdate;
 
-            // ÇöÀç ¾ÀÀÇ º¯°æ»çÇ×À» ÀúÀåÇÏ°í È®ÀÎÇÑ´Ù
+            // í˜„ì¬ ì”¬ì˜ ë³€ê²½ì‚¬í•­ì„ ì €ì¥í•˜ê³  í™•ì¸í•œë‹¤
             if (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
             {
-                // ¾À ÆÄÀÏÀ» Ã£´Â´Ù
-                string[] guids = AssetDatabase.FindAssets("t:scene " + sceneToOpen, null);
+                // ì”¬ íŒŒì¼ì„ ì°¾ëŠ”ë‹¤
+                string[] guids = AssetDatabase.FindAssets("t:scene", null);
+                string targetScenePath = null;
 
-                if (guids.Length == 0)
+                foreach (string guid in guids)
                 {
-                    Debug.LogWarning("Couldn't find scene file");
+                    string assetPath = AssetDatabase.GUIDToAssetPath(guid);
+                    string sceneName = System.IO.Path.GetFileNameWithoutExtension(assetPath);
+
+                    if (string.Equals(sceneName, sceneToOpen, StringComparison.OrdinalIgnoreCase))
+                    {
+                        targetScenePath = assetPath;
+                        break;
+                    }
+                }
+
+                if (string.IsNullOrEmpty(targetScenePath))
+                {
+                    Debug.LogError($"Couldn't find scene file: {sceneToOpen}");
                 }
                 else
                 {
-                    // ¾ÀÀ» ¿¬´Ù
-                    string scenePath = AssetDatabase.GUIDToAssetPath(guids[0]);
-                    EditorSceneManager.OpenScene(scenePath);
+                    // ì”¬ì„ ì—°ë‹¤
+                    EditorSceneManager.OpenScene(targetScenePath);
 
-                    // ¾À ÀÚµ¿ ÇÃ·¹ÀÌ 
+                    // ì”¬ ìë™ í”Œë ˆì´ (í•„ìš”í•œ ê²½ìš° ì£¼ì„ í•´ì œ)
                     //EditorApplication.isPlaying = true;
                 }
             }
-
             sceneToOpen = null;
         }
     }
 
-    /** Å¸ÀÓ ½ºÄÉÀÏ ÀüÈ¯À» µµ¿ÍÁÖ´Â ÇïÆÛ Å¬·¡½º */
+    /** íƒ€ì„ ìŠ¤ì¼€ì¼ ì „í™˜ì„ ë„ì™€ì£¼ëŠ” í—¬í¼ í´ë˜ìŠ¤ */
     private static class TimeScaleHelper
     {
         public static void ChangeTimScale(float timeScale)

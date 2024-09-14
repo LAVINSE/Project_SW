@@ -6,32 +6,25 @@ using UnityEngine;
 [InitializeOnLoad]
 public static class CustomEditorToolbarExtender
 {
-    // ¿ŞÂÊ ¿À¸¥ÂÊ Åø¹Ù¿¡ Ãß°¡ÇÒ GUI ¸®½ºÆ®
+    // ì™¼ìª½ ì˜¤ë¥¸ìª½ íˆ´ë°”ì— ì¶”ê°€í•  GUI ë¦¬ìŠ¤íŠ¸
     public static readonly List<System.Action> LeftToolbarGUI = new List<System.Action>();
     public static readonly List<System.Action> RightToolbarGUI = new List<System.Action>();
 
     static CustomEditorToolbarExtender()
     {
-        // ¿¡µğÅÍÀÇ Åø¹Ù Å¸ÀÔÀ» °¡Á®¿Â´Ù
+        // ì—ë””í„°ì˜ íˆ´ë°” íƒ€ì…ì„ ê°€ì ¸ì˜¨ë‹¤
         System.Type toolbarType = typeof(Editor).Assembly.GetType("UnityEditor.Toolbar");
 
-        // Äİ¹é ¸Ş¼­µå µî·Ï
+        // ì½œë°± ë©”ì„œë“œ ë“±ë¡
         CustomEditorToolbarCallback.OnToolbarGUILeft = GUILeft;
         CustomEditorToolbarCallback.OnToolbarGUIRight = GUIRight;
     }
 
-    // GUI ¿ä¼Òµé »çÀÌÀÇ °£°İÀ» Á¤ÀÇÇÒ º¯¼ö
-    public const float space = 10; // ±âº» °£°İ
-    public const float largeSpace = 20; // Å« °£°İ
-    public const float buttonWidth = 32; // ¹öÆ° ³Êºñ
-    public const float dropdownWidth = 80; // µå·Ó´Ù¿î ³Êºñ
-    public const float playPauseStopWidth = 100; // Play Pause Stop ³Êºñ
-
-    /** ¿ŞÂÊ Åø¹Ù GUI ·»´õ¸µÇÑ´Ù */
+    /** ì™¼ìª½ íˆ´ë°” GUI ë Œë”ë§í•œë‹¤ */
     public static void GUILeft()
     {
         GUILayout.BeginHorizontal();
-        // LeftToolbarGUI ¸®½ºÆ®¿¡ µî·ÏµÈ ¸ğµç Äİ¹é ½ÇÇà
+        // LeftToolbarGUI ë¦¬ìŠ¤íŠ¸ì— ë“±ë¡ëœ ëª¨ë“  ì½œë°± ì‹¤í–‰
         foreach (var handler in LeftToolbarGUI)
         {
             handler();
@@ -39,11 +32,11 @@ public static class CustomEditorToolbarExtender
         GUILayout.EndHorizontal();
     }
 
-    /** ¿À¸¥ÂÊ Åø¹Ù GUI ·»´õ¸µÇÑ´Ù */
+    /** ì˜¤ë¥¸ìª½ íˆ´ë°” GUI ë Œë”ë§í•œë‹¤ */
     public static void GUIRight()
     {
         GUILayout.BeginHorizontal();
-        // RightToolbarGUI ¸®½ºÆ®¿¡ µî·ÏµÈ ¸ğµç Äİ¹é ½ÇÇà
+        // RightToolbarGUI ë¦¬ìŠ¤íŠ¸ì— ë“±ë¡ëœ ëª¨ë“  ì½œë°± ì‹¤í–‰
         foreach (var handler in RightToolbarGUI)
         {
             handler();

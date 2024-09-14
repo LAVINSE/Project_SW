@@ -5,15 +5,15 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(ProjectSettingSO))]
-public class CustomEditorProjectSetting : Editor
+[CustomEditor(typeof(CustomEditorSymbolSO))]
+public class CustomEditorSymbol : Editor
 {
     #region 함수
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
 
-        var projectSettingSO = (ProjectSettingSO)target;
+        var projectSettingSO = (CustomEditorSymbolSO)target;
         var addSymbols = projectSettingSO.SymBols;
 
         if (GUILayout.Button("SymBols Update", GUILayout.Height(50)))
