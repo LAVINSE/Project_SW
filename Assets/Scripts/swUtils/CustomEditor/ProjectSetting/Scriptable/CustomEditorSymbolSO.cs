@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "CustomEditorProjectSettingSO", menuName = "CustomEditor/SymbolSO")]
+[CreateAssetMenu(fileName = "CustomEditorProjectSettingSO", menuName = "swUtils/CustomEditor/SymbolSO")]
 public class CustomEditorSymbolSO : ScriptableObject
 {
     #region 변수

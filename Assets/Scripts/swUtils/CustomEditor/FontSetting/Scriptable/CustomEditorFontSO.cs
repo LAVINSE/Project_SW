@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "CustomEditorFontSO", menuName = "CustomEditor/FontSO")]
+[CreateAssetMenu(fileName = "CustomEditorFontSO", menuName = "swUtils/CustomEditor/FontSO")]
 public class CustomEditorFontSO : ScriptableObject
 {
     #region 변수
