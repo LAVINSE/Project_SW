@@ -27,7 +27,6 @@ public class CanvasResolution : MonoBehaviour
     private void Awake()
     {
         CanvasScalerResolution();
-        swUtilsLog.Log("123");
     }
 
     /** 비율에 따라 저장된 UI위치 조정 */
