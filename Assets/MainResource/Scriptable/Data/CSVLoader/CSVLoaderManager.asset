@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sheetMappings:
   - sheetName: "\uBAAC\uC2A4\uD130 \uB370\uC774\uD130"
-    csvFile: {fileID: 4900000, guid: a9c0f2eb6457c194d9a2d45845f5bfa0, type: 3}
+    csvFile: {fileID: 4900000, guid: 3de1a94fad36e964fbbb02bc1a466e1f, type: 3}
+  databaseSOList:
+  - {fileID: 11400000, guid: ee1839a84dc177149b0c1265fc3c6d17, type: 2}

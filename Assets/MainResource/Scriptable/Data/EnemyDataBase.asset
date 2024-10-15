@@ -1,0 +1,112 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b12eba4760cee244288db33123e5e12a, type: 3}
+  m_Name: EnemyDataBase
+  m_EditorClassIdentifier: 
+  sheetName: "\uBAAC\uC2A4\uD130 \uB370\uC774\uD130"
+  enemyDataList:
+  - monsterId: SLIME
+    monsterName: "\uC2AC\uB77C\uC784"
+    rating: COMMON
+    type: NONE
+    maxHp: 10
+    attack: 1
+    skillActiveName: 
+    skillPassiveName: 
+  - monsterId: FIRE_SLIME
+    monsterName: "\uBD88 \uC2AC\uB77C\uC784"
+    rating: COMMON
+    type: FIRE
+    maxHp: 15
+    attack: 2
+    skillActiveName: 
+    skillPassiveName: Null
+  - monsterId: IRON_SLIME
+    monsterName: "\uCCA0 \uC2AC\uB77C\uC784"
+    rating: COMMON
+    type: IRON
+    maxHp: 15
+    attack: 2
+    skillActiveName: 
+    skillPassiveName: 
+  - monsterId: GRASS_SLIME
+    monsterName: "\uD480 \uC2AC\uB77C\uC784"
+    rating: COMMON
+    type: GRASS
+    maxHp: 15
+    attack: 2
+    skillActiveName: 
+    skillPassiveName: 
+  - monsterId: WATER_SLIME
+    monsterName: "\uBB3C \uC2AC\uB77C\uC784"
+    rating: COMMON
+    type: WATER
+    maxHp: 15
+    attack: 2
+    skillActiveName: 
+    skillPassiveName: 
+  - monsterId: DIRT_SLIME
+    monsterName: "\uD759 \uC2AC\uB77C\uC784"
+    rating: COMMON
+    type: DIRT
+    maxHp: 15
+    attack: 2
+    skillActiveName: 
+    skillPassiveName: 
+  - monsterId: ELITE_SL_F
+    monsterName: "\uC5D8\uB9AC\uD2B8 \uBD88 \uC2AC\uB77C\uC784"
+    rating: ELITE
+    type: FIRE
+    maxHp: 30
+    attack: 4
+    skillActiveName: 
+    skillPassiveName: "\uBD88\uB625"
+  - monsterId: E_SL_I
+    monsterName: "\uC5D8\uB9AC\uD2B8 \uCCA0 \uC2AC\uB77C\uC784"
+    rating: ELITE
+    type: IRON
+    maxHp: 30
+    attack: 4
+    skillActiveName: "\uBC29\uC5B4\uD0DC\uC138"
+    skillPassiveName: 
+  - monsterId: E_SL_G
+    monsterName: "\uC5D8\uB9AC\uD2B8 \uD480 \uC2AC\uB77C\uC784"
+    rating: ELITE
+    type: GRASS
+    maxHp: 30
+    attack: 4
+    skillActiveName: 
+    skillPassiveName: "\uCE58\uC720\uC758 \uD30C\uB3D9"
+  - monsterId: E_SL_W
+    monsterName: "\uC5D8\uB9AC\uD2B8 \uBB3C \uC2AC\uB77C\uC784"
+    rating: ELITE
+    type: WATER
+    maxHp: 30
+    attack: 4
+    skillActiveName: "\uBB3C\uAC10\uC625"
+    skillPassiveName: 
+  - monsterId: E_SL_D
+    monsterName: "\uC5D8\uB9AC\uD2B8 \uD759 \uC2AC\uB77C\uC784"
+    rating: ELITE
+    type: DIRT
+    maxHp: 30
+    attack: 4
+    skillActiveName: 
+    skillPassiveName: "\uB545\uAD74"
+  - monsterId: K_SL
+    monsterName: "\uD0B9 \uC2AC\uB77C\uC784"
+    rating: BOSS
+    type: NONE
+    maxHp: 50
+    attack: 8
+    skillActiveName: 
+    skillPassiveName: "\uBD84\uC5F4"

@@ -3,13 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "CSVLoader", menuName = "swUtils/DataLoader/CSVLoader")]
 public class swUtilsCSVLoader : ScriptableObject
-{
+{ 
+    // 사용 예시
+    // Dictionary<string, string> data = GetDataById(sheetMappings[0].sheetName, "1");
+    // Debug.Log($"{data["ID"]} {data["이름"]} {data["HP"]} {data["MP"]}");
+
     #region 변수
     [System.Serializable]
     public class SheetMapping
@@ -17,7 +22,10 @@ public class swUtilsCSVLoader : ScriptableObject
         public string sheetName;
         public TextAsset csvFile;
     }
+
     [SerializeField] private List<SheetMapping> sheetMappings = new List<SheetMapping>();
+    [SerializeField] private List<swUtilsDataBaseSO> databaseSOList = new List<swUtilsDataBaseSO>();
+
     private Dictionary<string, Dictionary<string, Dictionary<string, string>>> excelSheetData =
         new Dictionary<string, Dictionary<string, Dictionary<string, string>>>();
     #endregion
@@ -31,12 +39,26 @@ public class swUtilsCSVLoader : ScriptableObject
             if (mapping.csvFile != null)
             {
                 LoadCSVDataFromTextAsset(mapping.sheetName, mapping.csvFile);
+                var database = databaseSOList.Find(x => x.SheetName == mapping.sheetName);
+                if (database != null)
+                {
+                    database.LoadCSVData(GetDataSheet(database.SheetName));
+                }
             }
             else
             {
                 Debug.LogError($"CSV file not assigned for sheet: {mapping.sheetName}");
             }
         }
+    }
+
+    /** SheetName에 해당하는 모든 데이터를 가져온다 */
+    public Dictionary<string, Dictionary<string, string>> GetDataSheet(string sheetName)
+    {
+        if (excelSheetData.TryGetValue(sheetName, out var sheet))
+            return sheet;
+        else
+            return null;
     }
 
     /** ID에 해당하는 모든 데이터를 가져온다 */
@@ -171,13 +193,6 @@ public class swUtilsCSVLoader : ScriptableObject
         // 기본적으로 UTF-8 사용
         return Encoding.UTF8.GetString(fileBytes);
     }
-
-    /** 사용 예시 코드 */
-    public void Test()
-    {
-        Dictionary<string, string> data = GetDataById(sheetMappings[0].sheetName, "1");
-        Debug.Log($"{data["ID"]} {data["이름"]} {data["HP"]} {data["MP"]}");
-    }
 }
 
 [CustomEditor(typeof(swUtilsCSVLoader))]
@@ -194,10 +209,22 @@ public class CustomEditorCSVLoader : Editor
             manager.InitializeAllSheetData();
         }
 
-        EditorGUILayout.HelpBox(
+        GUIStyle customGUIStyle = new GUIStyle(GUI.skin.box
+            )
+        {
+            padding = new RectOffset(15, 15, 15, 15),
+            margin = new RectOffset(0, 0, 5, 5)
+        };
+
+        GUILayout.Space(10);
+
+        EditorGUILayout.BeginVertical(customGUIStyle);
+        EditorGUILayout.LabelField
+            (
             "1. Sheet Mappings에 시트 이름과 CSV 파일을 할당하세요.\n" +
             "2. GetValueById(시트이름, ID, 컬럼명)으로 특정 ID의 컬럼 데이터를 가져올 수 있습니다." +
             "3. GetDataById(시트이름, ID)으로 특정 ID의 모든 데이터를 가져올 수 있습니다.",
-            MessageType.Info);
+            EditorStyles.wordWrappedLabel);
+        EditorGUILayout.EndVertical();
     }
 }
