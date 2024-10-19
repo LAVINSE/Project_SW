@@ -1,0 +1,16 @@
+ID,NAME,RATING,TYPE,HP,BASIC_ATTACK,SKILL_ACTIVE,SKILL_PASSIVE
+1,슬라임,COMMON,NONE,10,1,,
+2,불 슬라임,COMMON,FIRE,15,2,,
+3,철 슬라임,COMMON,IRON,15,2,,
+4,풀 슬라임,COMMON,GRASS,15,2,,
+5,물 슬라임,COMMON,WATER,15,2,,
+6,흙 슬라임,COMMON,DIRT,15,2,,
+7,엘리트 불 슬라임,ELITE,FIRE,30,4,,불똥
+8,엘리트 철 슬라임,ELITE,IRON,30,4,방어태세,
+9,엘리트 풀 슬라임,ELITE,GRASS,30,4,,치유의 파동
+10,엘리트 물 슬라임,ELITE,WATER,30,4,물감옥,
+11,엘리트 흙 슬라임,ELITE,DIRT,30,4,,땅굴
+12,킹 슬라임,BOSS,NONE,50,8,,분열
+13,고블린,COMMON,,20,2,,
+14,스텀프,ELITE,,40,4,뿌리내리기,
+15,오크,BOSS,,100,5,내려찍기,돌진

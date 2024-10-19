@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "EnemyDataBase", menuName = "DataBase")]
+[CreateAssetMenu(fileName = "EnemyDataBase", menuName = "DataBase/EnemyData")]
 public class EnemyDataBaseSO : swUtilsDataBaseSO
 {
+    #region 데이터
     [System.Serializable]
     public class EnemyData
     {
@@ -20,15 +21,22 @@ public class EnemyDataBaseSO : swUtilsDataBaseSO
         public string skillActiveName;
         public string skillPassiveName;
     }
+    #endregion // 데이터
 
+    #region 변수
     [SerializeField] private string sheetName;
     [SerializeField] private List<EnemyData> enemyDataList;
+    #endregion // 변수
 
+    #region 프로퍼티
     public override string SheetName => sheetName;
+    public List<EnemyData> EnemyDataList => enemyDataList;
+    #endregion // 프로퍼티
 
+    #region 함수
     public override void LoadCSVData(Dictionary<string, Dictionary<string, string>> dataDict)
     {
-        enemyDataList.Clear();
+        EnemyDataList.Clear();
 
         foreach (var row in dataDict.Values)
         {
@@ -40,20 +48,21 @@ public class EnemyDataBaseSO : swUtilsDataBaseSO
                     monsterName = row["NAME"],
                     rating = row["RATING"],
                     type = row["TYPE"],
-                    maxHp = int.Parse(row["HP"]),
-                    attack = int.Parse(row["BASIC_ATTACK"]),
+                    maxHp = int.TryParse(row["HP"], out int hp) ? hp : 0,
+                    attack = int.TryParse(row["BASIC_ATTACK"], out int attack) ? attack : 0,
                     skillActiveName = row["SKILL_ACTIVE"],
                     skillPassiveName = row["SKILL_PASSIVE"]
                 };
 
-                enemyDataList.Add(enemy);
+                EnemyDataList.Add(enemy);
             }
             catch (Exception e)
             {
-                Debug.LogError($"Error parsing row with ID {row["ID"]}: {e.Message}");
+                LoadErrorLog(row["ID"], e);
             }
         }
 
-        Debug.Log($"Loaded {enemyDataList.Count} enemies from CSV.");
+        LoadCompleteLog(enemyDataList);
     }
+    #endregion // 함수
 }
