@@ -28,8 +28,9 @@ public class swUtilsCSVLoader : ScriptableObject
 
     private Dictionary<string, Dictionary<string, Dictionary<string, string>>> excelSheetData =
         new Dictionary<string, Dictionary<string, Dictionary<string, string>>>();
-    #endregion
+    #endregion // 변수
 
+    #region 함수
     /** 데이터 초기 설정을 한다 */
     public void InitializeAllSheetData()
     {
@@ -193,6 +194,7 @@ public class swUtilsCSVLoader : ScriptableObject
         // 기본적으로 UTF-8 사용
         return Encoding.UTF8.GetString(fileBytes);
     }
+    #endregion // 함수
 }
 
 [CustomEditor(typeof(swUtilsCSVLoader))]

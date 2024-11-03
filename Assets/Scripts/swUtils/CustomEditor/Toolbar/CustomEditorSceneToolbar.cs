@@ -82,8 +82,11 @@ public static class CustomEditorSceneToolbar
     public class SceneSwitchRightButton
     {
         private static float sliderValue = 1f;
-        private static float sliderLeftValue = 0;
-        private static float sliderRightValue = 1f;
+        private static float sliderLeftValue = 1f;
+        private static float sliderRightValue = 5f;
+        private static float previousSliderValue = 1f;
+
+        private static bool isTimeScaleEnabled = false;
 
         static SceneSwitchRightButton()
         {
@@ -96,9 +99,22 @@ public static class CustomEditorSceneToolbar
         {
             // 타임 스케일 조절
             GUILayout.Label("Time Scale");
-            sliderValue = GUILayout.HorizontalSlider(sliderValue, sliderLeftValue, sliderRightValue, GUILayout.Width(100f));
-            TimeScaleHelper.ChangeTimScale(sliderValue);
+
+            float newSliderValue = GUILayout.HorizontalSlider(sliderValue, sliderLeftValue, sliderRightValue, GUILayout.Width(100f));
             GUILayout.Label(sliderValue.ToString("0.00"), ToolbarStyles.fontStyle);
+
+            isTimeScaleEnabled = GUILayout.Toggle(isTimeScaleEnabled, "IsEnabled", GUILayout.Width(70f));
+
+            if (isTimeScaleEnabled)
+            {
+                if (newSliderValue != previousSliderValue)
+                {
+                    sliderValue = newSliderValue;
+                    TimeScaleHelper.ChangeTimScale(sliderValue);
+                    previousSliderValue = sliderValue;
+                }
+            }
+
             GUILayout.FlexibleSpace();
         }
     }

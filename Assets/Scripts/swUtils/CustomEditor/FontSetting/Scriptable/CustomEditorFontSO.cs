@@ -20,8 +20,8 @@ public class CustomEditorFontSO : ScriptableObject
 
     #region 프로퍼티
     public IReadOnlyList<TMP_FontAsset> FontList => fontList;
-    public bool IsSetting => isSetting;
     public IReadOnlyList<TMP_FontAsset> TargetFont => targetFont;
+    public bool IsSetting => isSetting;
     public TMP_FontAsset ChangeFont => changeFont;
     #endregion // 프로퍼티
 
@@ -169,7 +169,7 @@ public class CustomEditorFontSO : ScriptableObject
             GameObject prefabRoot = prefabAsset;
 
             bool prefabModified = false;
-            bool hasMissingScript = false; // 누락된 스크립트 여부
+            bool hasMissingScript = false;
 
             var textComponents = prefabRoot.GetComponentsInChildren<TextMeshProUGUI>(true);
 
@@ -193,11 +193,10 @@ public class CustomEditorFontSO : ScriptableObject
                 // Prefab 여부 확인
                 if (PrefabUtility.IsPartOfPrefabInstance(nestedPrefabGO))
                 {
-                    // 누락된 스크립트가 있는지 확인
                     var components = nestedPrefabGO.GetComponents<Component>();
                     if (components.Any(c => c == null))
                     {
-                        hasMissingScript = true; // 누락된 스크립트가 있으면 플래그 설정
+                        hasMissingScript = true;
                         continue;
                     }
 
@@ -217,7 +216,6 @@ public class CustomEditorFontSO : ScriptableObject
                 }
             }
 
-            // 누락된 스크립트가 없는 경우에만 프리팹 저장
             if (prefabModified && !hasMissingScript)
             {
                 // 변경된 프리팹을 저장
