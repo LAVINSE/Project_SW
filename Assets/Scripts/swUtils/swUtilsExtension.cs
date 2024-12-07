@@ -4,50 +4,60 @@ using UnityEngine;
 
 public static class swUtilsExtension
 {
-    #region ÇÔ¼ö
-    /** ÀÛÀ½ ¿©ºÎ¸¦ °Ë»çÇÑ´Ù */
+    #region í•¨ìˆ˜
+    /** ì‘ìŒ ì—¬ë¶€ë¥¼ ê²€ì‚¬í•œë‹¤ */
     public static bool ExIsLess(this float a, float b)
     {
         return a < b - float.Epsilon;
     }
 
-    /** °°À½ ¿©ºÎ¸¦ °Ë»çÇÑ´Ù */
+    /** ê°™ìŒ ì—¬ë¶€ë¥¼ ê²€ì‚¬í•œë‹¤ */
     public static bool ExIsEquals(this float a, float b)
     {
         return Mathf.Approximately(a, b);
     }
 
-    /** ÀÛ°Å³ª °°À½ ¿©ºÎ¸¦ °Ë»çÇÑ´Ù */
+    /** ì‘ê±°ë‚˜ ê°™ìŒ ì—¬ë¶€ë¥¼ ê²€ì‚¬í•œë‹¤ */
     public static bool ExIsLessEquals(this float a, float b)
     {
         return a.ExIsLess(b) || a.ExIsEquals(b);
     }
 
-    /** Å« ¿©ºÎ¸¦ °Ë»çÇÑ´Ù */
+    /** í° ì—¬ë¶€ë¥¼ ê²€ì‚¬í•œë‹¤ */
     public static bool ExIsGreat(this float a, float b)
     {
         return a > b - float.Epsilon;
     }
 
-    /** Å©°Å³ª °°À½ ¿©ºÎ¸¦ °Ë»çÇÑ´Ù */
+    /** í¬ê±°ë‚˜ ê°™ìŒ ì—¬ë¶€ë¥¼ ê²€ì‚¬í•œë‹¤ */
     public static bool ExIsGreatEquals(this float a, float b)
     {
         return a.ExIsGreat(b) || a.ExIsEquals(b);
     }
 
-    /** ¿ùµå => ·ÎÄÃ·Î º¯È¯ÇÑ´Ù */
+    /** ì›”ë“œ => ë¡œì»¬ë¡œ ë³€í™˜í•œë‹¤ */
     public static Vector3 ExToLocal(this Vector3 posA, GameObject parentObj, bool isCoord = true)
     {
         var vector4 = new Vector4(posA.x, posA.y, posA.z, isCoord ? 1.0f : 0.0f);
         return parentObj.transform.worldToLocalMatrix * vector4;
     }
 
-    /** ·ÎÄÃ => ¿ùµå·Î º¯È¯ÇÑ´Ù */
+    /** ë¡œì»¬ => ì›”ë“œë¡œ ë³€í™˜í•œë‹¤ */
     public static Vector3 ExToWorld(this Vector3 posA,
         GameObject parentObj, bool isCoord = true)
     {
         var stVec4 = new Vector4(posA.x, posA.y, posA.z, isCoord ? 1.0f : 0.0f);
         return parentObj.transform.localToWorldMatrix * stVec4;
     }
-    #endregion // ÇÔ¼ö
+
+    /** X, Y, Z ì¢Œí‘œë¥¼ ì„ íƒì ìœ¼ë¡œ ë³€ê²½í•œë‹¤ */
+    public static Vector3 With(this Vector3 pos, float? x = null, float? y = null, float? z = null)
+    {
+        pos.x = x != null ? (float)x : pos.x;
+        pos.y = y != null ? (float)y : pos.y;
+        pos.z = z != null ? (float)z : pos.z;
+
+        return pos;
+    }
+    #endregion // í•¨ìˆ˜
 }
