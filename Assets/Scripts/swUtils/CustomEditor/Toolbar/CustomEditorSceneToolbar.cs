@@ -52,9 +52,9 @@ public static class CustomEditorSceneToolbar
     }
 
     [InitializeOnLoad]
-    public class SceneSwitchLeftButton
+    public class SceneswitchLeftButton
     {
-        static SceneSwitchLeftButton()
+        static SceneswitchLeftButton()
         {
             // 왼쪽 툴바에 GUI를 추가한다
             CustomEditorToolbarExtender.LeftToolbarGUI.Add(OnToolbarGUI);
@@ -79,7 +79,7 @@ public static class CustomEditorSceneToolbar
     }
 
     [InitializeOnLoad]
-    public class SceneSwitchRightButton
+    public class SceneswitchRightButton
     {
         private static float sliderValue = 1f;
         private static float sliderLeftValue = 1f;
@@ -88,7 +88,7 @@ public static class CustomEditorSceneToolbar
 
         private static bool isTimeScaleEnabled = false;
 
-        static SceneSwitchRightButton()
+        static SceneswitchRightButton()
         {
             // 오른쪽 툴바에 GUI를 추가한다
             CustomEditorToolbarExtender.RightToolbarGUI.Add(OnToolbarGUI);

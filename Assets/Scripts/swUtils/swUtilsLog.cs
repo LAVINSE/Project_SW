@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class swUtilsLog
+public static class SwUtilsLog
 {
     #region 함수
     [System.Diagnostics.Conditional("DebugMode")]

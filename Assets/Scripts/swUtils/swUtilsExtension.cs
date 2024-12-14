@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class swUtilsExtension
+public static class SwUtilsExtension
 {
     #region 함수
     /** 작음 여부를 검사한다 */

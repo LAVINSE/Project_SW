@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public static class swUtilsTween
+public static class SwUtilsTween
 {
     #region 함수
     /** 버튼에 애니메이션을 추가한다 */

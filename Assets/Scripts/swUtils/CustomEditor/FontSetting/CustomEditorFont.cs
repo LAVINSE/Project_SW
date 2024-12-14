@@ -158,7 +158,7 @@ public class CustomEditorFindFontAsset : Editor
 
         if (GUILayout.Button("Find FontAsset Debug Log", GUILayout.Height(50)))
         {
-            customEditorFontSO.FindObjectsWithFont(customEditorFontSO.TargetFont);
+            customEditorFontSO.FindObjectSwithFont(customEditorFontSO.TargetFont);
         }
 
         if (GUILayout.Button("Change FontAsset TargetFont", GUILayout.Height(50)))

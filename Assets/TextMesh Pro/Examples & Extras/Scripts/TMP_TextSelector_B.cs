@@ -507,7 +507,7 @@ namespace TMPro.Examples
             dst_uv2s[vertexIndex + 3] = src_uv2s[vertexIndex + 3];
 
 
-            // Restore last vertex attribute as we swapped it as well
+            // Restore last vertex attribute as we Swapped it as well
             int lastIndex = (src_vertices.Length / 4 - 1) * 4;
 
             // Vertices

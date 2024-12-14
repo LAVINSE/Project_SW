@@ -646,7 +646,7 @@ namespace DG.Tweening
             /// Converts the anchoredPosition of the first RectTransform to the second RectTransform,
             /// taking into consideration offset, anchors and pivot, and returns the new anchoredPosition
             /// </summary>
-            public static Vector2 SwitchToRectTransform(RectTransform from, RectTransform to)
+            public static Vector2 switchToRectTransform(RectTransform from, RectTransform to)
             {
                 Vector2 localPoint;
                 Vector2 fromPivotDerivedOffset = new Vector2(from.rect.width * 0.5f + from.rect.xMin, from.rect.height * 0.5f + from.rect.yMin);

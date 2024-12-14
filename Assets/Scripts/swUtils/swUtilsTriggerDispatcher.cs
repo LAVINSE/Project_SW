@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class swUtilsTriggerDispatcher : MonoBehaviour
+public class SwUtilsTriggerDispatcher : MonoBehaviour
 {
     #region 프로퍼티
-    public System.Action<swUtilsTriggerDispatcher, Collider> EnterCallback { get; set; } = null;
-    public System.Action<swUtilsTriggerDispatcher, Collider> StayCallback { get; set; } = null;
-    public System.Action<swUtilsTriggerDispatcher, Collider> ExitCallback { get; set; } = null;
+    public System.Action<SwUtilsTriggerDispatcher, Collider> EnterCallback { get; set; } = null;
+    public System.Action<SwUtilsTriggerDispatcher, Collider> StayCallback { get; set; } = null;
+    public System.Action<SwUtilsTriggerDispatcher, Collider> ExitCallback { get; set; } = null;
 
-    public System.Action<swUtilsTriggerDispatcher, Collider2D> Enter2DCallback { get; set; } = null;
-    public System.Action<swUtilsTriggerDispatcher, Collider2D> Stay2DCallback { get; set; } = null;
-    public System.Action<swUtilsTriggerDispatcher, Collider2D> Exit2DCallback { get; set; } = null;
+    public System.Action<SwUtilsTriggerDispatcher, Collider2D> Enter2DCallback { get; set; } = null;
+    public System.Action<SwUtilsTriggerDispatcher, Collider2D> Stay2DCallback { get; set; } = null;
+    public System.Action<SwUtilsTriggerDispatcher, Collider2D> Exit2DCallback { get; set; } = null;
     #endregion // 프로퍼티
 
     #region 함수

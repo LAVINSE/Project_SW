@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "EnemyDataBase", menuName = "DataBase/EnemyData")]
-public class EnemyDataBaseSO : swUtilsDataBaseSO
+public class EnemyDataBaseSO : SwUtilsDataBaseSO
 {
     #region 데이터
     [System.Serializable]

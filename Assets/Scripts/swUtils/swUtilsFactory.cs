@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class swUtilsFactory : MonoBehaviour
+public class SwUtilsFactory : MonoBehaviour
 {
     #region 함수
     /** 게임 객체를 생성한다 */
@@ -41,7 +41,7 @@ public class swUtilsFactory : MonoBehaviour
         GameObject parentObj, Vector3 pos, Vector3 scale, Vector3 rotate,
         bool isStayWorldPos = false) where T : Component
     {
-        var oGameObject = swUtilsFactory.CreateGameObj(objName,
+        var oGameObject = SwUtilsFactory.CreateGameObj(objName,
             parentObj, pos, scale, rotate, isStayWorldPos);
 
         return oGameObject.GetComponent<T>() ?? oGameObject.AddComponent<T>();
@@ -53,7 +53,7 @@ public class swUtilsFactory : MonoBehaviour
         Vector3 scale, Vector3 rotate,
         bool isStayWorldPos = false) where T : Component
     {
-        var oGameObject = swUtilsFactory.CreateCloneGameObj(objName,
+        var oGameObject = SwUtilsFactory.CreateCloneGameObj(objName,
             prefabObj, parentObj, pos, scale, rotate, isStayWorldPos);
 
         return oGameObject.GetComponent<T>() ?? oGameObject.AddComponent<T>();

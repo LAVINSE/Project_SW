@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "StageDataBase", menuName = "DataBase/StageData")]
-public class StageDataBaseSO : swUtilsDataBaseSO
+public class StageDataBaseSO : SwUtilsDataBaseSO
 {
     #region 데이터
     [System.Serializable]

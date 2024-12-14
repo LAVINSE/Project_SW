@@ -6,7 +6,7 @@ using UnityEditor.SceneManagement;
 using UnityEditor;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "CustomEditorFontSO", menuName = "swUtils/CustomEditor/FontSO")]
+[CreateAssetMenu(fileName = "CustomEditorFontSO", menuName = "SwUtils/CustomEditor/FontSO")]
 public class CustomEditorFontSO : ScriptableObject
 {
     #region 변수
@@ -35,7 +35,7 @@ public class CustomEditorFontSO : ScriptableObject
 
     #region 타겟 폰트 찾기
     /** 프리팹과 하이어라키에서 타겟폰트를 가지고 있는것을 찾는다*/
-    public void FindObjectsWithFont(IReadOnlyList<TMP_FontAsset> font)
+    public void FindObjectSwithFont(IReadOnlyList<TMP_FontAsset> font)
     {
         if (font is null)
         {

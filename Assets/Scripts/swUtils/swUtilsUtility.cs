@@ -1,12 +1,13 @@
 using DG.Tweening;
-using System.Collections;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public static class swUtilsUtility
+public static class SwUtilsUtility
 {
     #region 함수
     /** 정수형 랜덤숫자를 반환한다 */
@@ -19,6 +20,47 @@ public static class swUtilsUtility
     public static float RandomFloat(this float valueA, float valueB)
     {
         return UnityEngine.Random.Range(valueA, valueB);
+    }
+
+    public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source, Int32? seed = null)
+    {
+        List<T> buffer = source.ToList();
+
+        System.Random random = seed.HasValue ? new System.Random(seed.Value) : new System.Random();
+
+        Int32 count = buffer.Count;
+
+        for (Int32 i = 0; i < count; i++)
+        {
+            Int32 j = random.Next(i, count);
+            yield return buffer[j];
+            buffer[j] = buffer[i];
+        }
+    }
+
+    /** 가중치 랜덤을 반환한다 */
+    public static T WeightRandom<T>(T[] items, int[] weights)
+    {
+        int totalWeight = 0;
+
+        foreach (var weight in weights)
+        {
+            totalWeight += weight;
+        }
+
+        int randomWeight = UnityEngine.Random.Range(0, totalWeight);
+        int accumulatedWeight = 0;
+
+        for (int i = 0; i < weights.Length; i++)
+        {
+            accumulatedWeight += weights[i];
+            if (randomWeight < accumulatedWeight)
+            {
+                return items[i];
+            }
+        }
+
+        return items[items.Length - 1];
     }
 
     /** 타임 영향 안받는 트윈 콜백한다 */

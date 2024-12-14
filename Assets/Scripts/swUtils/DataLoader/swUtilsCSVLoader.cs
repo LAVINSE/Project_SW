@@ -8,8 +8,8 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "CSVLoader", menuName = "swUtils/DataLoader/CSVLoader")]
-public class swUtilsCSVLoader : ScriptableObject
+[CreateAssetMenu(fileName = "CSVLoader", menuName = "SwUtils/DataLoader/CSVLoader")]
+public class SwUtilsCSVLoader : ScriptableObject
 { 
     // 사용 예시
     // Dictionary<string, string> data = GetDataById(sheetMappings[0].sheetName, "1");
@@ -24,7 +24,7 @@ public class swUtilsCSVLoader : ScriptableObject
     }
 
     [SerializeField] private List<SheetMapping> sheetMappings = new List<SheetMapping>();
-    [SerializeField] private List<swUtilsDataBaseSO> databaseSOList = new List<swUtilsDataBaseSO>();
+    [SerializeField] private List<SwUtilsDataBaseSO> databaseSOList = new List<SwUtilsDataBaseSO>();
 
     private Dictionary<string, Dictionary<string, Dictionary<string, string>>> excelSheetData =
         new Dictionary<string, Dictionary<string, Dictionary<string, string>>>();
@@ -197,12 +197,12 @@ public class swUtilsCSVLoader : ScriptableObject
     #endregion // 함수
 }
 
-[CustomEditor(typeof(swUtilsCSVLoader))]
+[CustomEditor(typeof(SwUtilsCSVLoader))]
 public class CustomEditorCSVLoader : Editor
 {
     public override void OnInspectorGUI()
     {
-        swUtilsCSVLoader manager = (swUtilsCSVLoader)target;
+        SwUtilsCSVLoader manager = (SwUtilsCSVLoader)target;
         DrawDefaultInspector();
         EditorGUILayout.Space();
 
