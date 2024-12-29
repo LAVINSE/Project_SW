@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.SceneManagement;
@@ -192,3 +193,4 @@ public static class CustomEditorSceneToolbar
         }
     }
 }
+#endif // UNITY_EDITOR

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SwUtilsFactory : MonoBehaviour
 {
-    #region ÇÔ¼ö
-    /** °ÔÀÓ °´Ã¼¸¦ »ı¼ºÇÑ´Ù */
+    #region í•¨ìˆ˜
+    /** ê²Œì„ ê°ì²´ë¥¼ ìƒì„±í•œë‹¤ */
     public static GameObject CreateGameObj(string objName,
         GameObject parentObj, Vector3 pos, Vector3 scale, Vector3 rotate,
         bool isStayWorldPos = false)
@@ -20,7 +20,7 @@ public class SwUtilsFactory : MonoBehaviour
         return oGameObj;
     }
 
-    /** »çº» °ÔÀÓ °´Ã¼¸¦ »ı¼ºÇÑ´Ù */
+    /** ì‚¬ë³¸ ê²Œì„ ê°ì²´ë¥¼ ìƒì„±í•œë‹¤ */
     public static GameObject CreateCloneGameObj(string objName,
         GameObject prefabObj, GameObject parentObj, Vector3 pos,
         Vector3 scale, Vector3 rotate, bool isStayWorldPos = false)
@@ -36,7 +36,7 @@ public class SwUtilsFactory : MonoBehaviour
         return oGameObj;
     }
 
-    /** °ÔÀÓ °´Ã¼¸¦ »ı¼ºÇÑ´Ù */
+    /** ê²Œì„ ê°ì²´ë¥¼ ìƒì„±í•œë‹¤ */
     public static T CreateGameObj<T>(string objName,
         GameObject parentObj, Vector3 pos, Vector3 scale, Vector3 rotate,
         bool isStayWorldPos = false) where T : Component
@@ -47,7 +47,7 @@ public class SwUtilsFactory : MonoBehaviour
         return oGameObject.GetComponent<T>() ?? oGameObject.AddComponent<T>();
     }
 
-    /** »çº» °ÔÀÓ °´Ã¼¸¦ »ı¼ºÇÑ´Ù */
+    /** ì‚¬ë³¸ ê²Œì„ ê°ì²´ë¥¼ ìƒì„±í•œë‹¤ */
     public static T CreateCloneGameObj<T>(string objName,
         GameObject prefabObj, GameObject parentObj, Vector3 pos,
         Vector3 scale, Vector3 rotate,
@@ -58,5 +58,5 @@ public class SwUtilsFactory : MonoBehaviour
 
         return oGameObject.GetComponent<T>() ?? oGameObject.AddComponent<T>();
     }
-    #endregion // ÇÔ¼ö
+    #endregion // í•¨ìˆ˜
 }

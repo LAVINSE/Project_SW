@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
@@ -74,3 +75,4 @@ public static class CustomEditorToolbarCallback
         }
     }
 }
+#endif // UNITY_EDITOR

@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -44,3 +45,4 @@ public static class CustomEditorToolbarExtender
         GUILayout.EndHorizontal();
     }
 }
+#endif // UNITY_EDITOR

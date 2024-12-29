@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,3 +14,4 @@ public class CustomEditorSymbolSO : ScriptableObject
     public IReadOnlyList<string> SymBols => symbols;
     #endregion // 프로퍼티
 }
+#endif // UNITY_EDITOR

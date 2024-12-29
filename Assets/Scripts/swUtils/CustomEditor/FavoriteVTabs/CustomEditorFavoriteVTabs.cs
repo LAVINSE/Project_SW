@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -359,3 +360,4 @@ public class CustomEditorFavoriteVTabs : EditorWindow
     }
     #endregion // 텍스처
 }
+#endif // UNITY_EDITOR

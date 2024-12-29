@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -35,3 +36,4 @@ public class CustomEditorWarningComponent
         GUI.Label(iconRect, WarningIcon);
     }
 }
+#endif // UNITY_EDITOR
