@@ -11,7 +11,8 @@ using UnityEngine;
 public class CustomEditorFontSO : ScriptableObject
 {
     #region 변수
-    [SerializeField] private List<TMP_FontAsset> fontList;
+    [SerializeField] private List<TMP_FontAsset> tmpFontList = new();
+    [SerializeField] private List<Font> baseFontList = new();
     [SerializeField] private bool isSetting;
 
     [Space]
@@ -20,7 +21,7 @@ public class CustomEditorFontSO : ScriptableObject
     #endregion // 함수
 
     #region 프로퍼티
-    public IReadOnlyList<TMP_FontAsset> FontList => fontList;
+    public IReadOnlyList<TMP_FontAsset> TmpFontList => tmpFontList;
     public IReadOnlyList<TMP_FontAsset> TargetFont => targetFont;
     public bool IsSetting => isSetting;
     public TMP_FontAsset ChangeFont => changeFont;
@@ -28,9 +29,14 @@ public class CustomEditorFontSO : ScriptableObject
 
     #region 폰트 가져오기
     /** 폰트를 가져온다 */
-    public TMP_FontAsset GetFont(string fontName)
+    public TMP_FontAsset GetTMPFont(string fontName)
     {
-        return fontList.Find(x => x.name == fontName);
+        return tmpFontList.Find(x => x.name == fontName);
+    }
+
+    public Font GetBaseFont(string fontName)
+    {
+        return baseFontList.Find(x => x.name == fontName);
     }
     #endregion // 폰트 가져오기
 

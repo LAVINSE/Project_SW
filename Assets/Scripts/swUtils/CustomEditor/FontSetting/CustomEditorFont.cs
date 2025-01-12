@@ -37,7 +37,7 @@ public class CustomEditorFont : MonoBehaviour
 
             if (fontSO != null)
             {
-                customFont = fontSO.GetFont("FontBase");
+                customFont = fontSO.GetTMPFont("FontBase");
             }
             else
             {
@@ -117,7 +117,7 @@ public class TextMeshProUGUICustomEditor : TMP_EditorPanelUI
         foreach (var textMesh in textMeshs)
         {
             Undo.RecordObject(textMesh, $"Set {fontName}");
-            textMesh.font = fontSO.GetFont(fontName);
+            textMesh.font = fontSO.GetTMPFont(fontName);
 
             if (PrefabUtility.IsPartOfPrefabInstance(textMesh))
             {

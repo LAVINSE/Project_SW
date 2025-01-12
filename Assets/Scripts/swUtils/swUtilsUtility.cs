@@ -7,7 +7,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public static class SwUtilsUtility
+public static partial class SwUtilsUtility
 {
     #region 함수
     /** 정수형 랜덤숫자를 반환한다 */
