@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
+using UnityEditor.Build;
 using UnityEngine;
 
 [CustomEditor(typeof(CustomEditorSymbolSO))]
@@ -31,7 +32,10 @@ public class CustomEditorSymbol : Editor
     private void UpdateScriptingDefineSymbols(IReadOnlyList<string> newSymbols)
     {
         BuildTargetGroup targetGroup = EditorUserBuildSettings.selectedBuildTargetGroup;
-        string currentSymbols = PlayerSettings.GetScriptingDefineSymbolsForGroup(targetGroup);
+        NamedBuildTarget target = UnityEditor.Build.NamedBuildTarget.FromBuildTargetGroup(targetGroup);
+        //string currentSymbols = PlayerSettings.GetScriptingDefineSymbolsForGroup(targetGroup);
+
+        string currentSymbols = PlayerSettings.GetScriptingDefineSymbols(target);
 
         List<string> symbolsList = new List<string>(currentSymbols.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries));
 
@@ -48,7 +52,8 @@ public class CustomEditorSymbol : Editor
         if (changed)
         {
             string updatedSymbols = string.Join(";", symbolsList);
-            PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, updatedSymbols);
+            //PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, updatedSymbols);
+            PlayerSettings.SetScriptingDefineSymbols(target, updatedSymbols);
             Debug.Log("Scripting Define Symbols updated: " + updatedSymbols);
         }
         else
@@ -60,7 +65,10 @@ public class CustomEditorSymbol : Editor
     private void ResetScriptingDefineSymbols(IReadOnlyList<string> symbolsToRemove)
     {
         BuildTargetGroup targetGroup = EditorUserBuildSettings.selectedBuildTargetGroup;
-        string currentSymbols = PlayerSettings.GetScriptingDefineSymbolsForGroup(targetGroup);
+        NamedBuildTarget target = UnityEditor.Build.NamedBuildTarget.FromBuildTargetGroup(targetGroup);
+        //string currentSymbols = PlayerSettings.GetScriptingDefineSymbolsForGroup(targetGroup);
+
+        string currentSymbols = PlayerSettings.GetScriptingDefineSymbols(target);
 
         List<string> symbolsList = new List<string>(currentSymbols.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries));
 
@@ -76,7 +84,8 @@ public class CustomEditorSymbol : Editor
         if (changed)
         {
             string updatedSymbols = string.Join(";", symbolsList);
-            PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, updatedSymbols);
+            //PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, updatedSymbols);
+            PlayerSettings.SetScriptingDefineSymbols(target, updatedSymbols);
             Debug.Log("Scripting Define Symbols reset: " + updatedSymbols);
         }
         else
