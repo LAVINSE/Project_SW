@@ -5,6 +5,7 @@ using UnityEngine;
 public class SkillSystemIdentifiedObjectSO : ScriptableObject, ICloneable
 {
     #region 변수
+    [SerializeField] private SkillSystemCategory[] categories;
     [SerializeField] private Sprite icon;
     [SerializeField] private int id = -1;
     [SerializeField] private string codeName;
